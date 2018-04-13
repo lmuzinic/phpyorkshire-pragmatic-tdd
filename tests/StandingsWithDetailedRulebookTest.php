@@ -6,21 +6,21 @@ namespace BallGame\Tests;
 
 
 use BallGame\Domain\Match\Match;
-use BallGame\Domain\RuleBook;
+use BallGame\Domain\DetailedRuleBook;
 use BallGame\Domain\Standings\Standings;
 use BallGame\Domain\Team\Team;
 use PHPUnit\Framework\TestCase;
 
-class StandingsTest extends TestCase
+class StandingsWithDetailedRulebookTest extends TestCase
 {
     private $standings;
 
     public function setUp()
     {
-        $this->standings = Standings::create('Year 2019', RuleBook::class);
+        $this->standings = Standings::create('Year 2019', DetailedRuleBook::class);
     }
 
-    public function testGetStandings()
+    public function testGetName()
     {
         // Given
         $yorkCity = Team::create('York city');
@@ -30,14 +30,20 @@ class StandingsTest extends TestCase
 
         $this->standings->record($match);
 
+        $match = Match::create($yorkCity, $manchester, 0, 5);
+
+        $this->standings->record($match);
+
         // When
         $standings = $this->standings->getStandings();
 
+        $this->assertTrue(true);
+
         // Then
         $this->assertEquals([
-                ['York city', 3, 1, 3],
-                ['Manchester United', 1, 3, 0]
-            ],
+            ['Manchester United', 6, 3, 3],
+            ['York city', 3, 6, 3],
+        ],
             $standings
         );
     }

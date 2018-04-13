@@ -44,6 +44,38 @@ class Match
     }
 
     /**
+     * @return Team
+     */
+    public function getHomeTeam(): Team
+    {
+        return $this->homeTeam;
+    }
+
+    /**
+     * @return Team
+     */
+    public function getAwayTeam(): Team
+    {
+        return $this->awayTeam;
+    }
+
+    /**
+     * @return int
+     */
+    public function getHomeTeamPoints(): int
+    {
+        return $this->homeTeamPoints;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAwayTeamPoints(): int
+    {
+        return $this->awayTeamPoints;
+    }
+
+    /**
      * @return Match
      */
     public static function create(Team $homeTeam, Team $awayTeam, $homeTeamPoints, $awayTeamPoints): Match

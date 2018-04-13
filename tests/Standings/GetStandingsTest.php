@@ -6,6 +6,7 @@ namespace BallGame\Tests\Standings;
 
 
 use BallGame\Domain\Match\Match;
+use BallGame\Domain\RuleBook;
 use BallGame\Domain\Standings\Standings;
 use BallGame\Domain\Team\Team;
 use PHPUnit\Framework\TestCase;
@@ -19,7 +20,7 @@ class GetStandingsTest extends TestCase
 
     public function setUp()
     {
-        $this->standings = Standings::create('Year 2018');
+        $this->standings = Standings::create('Year 2018', RuleBook::class);
     }
 
     public function testGetStandingsReturnsSortedStandings()
